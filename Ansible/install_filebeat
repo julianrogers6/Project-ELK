@@ -32,5 +32,5 @@
     # Use command module
   - name: enable service docker on boot
     systemd:
-      name: docker
+      name: filebeat
       enabled: yes
