@@ -1,0 +1,33 @@
+Vagrant.configure("2") do |config|
+  config.vm.define "scavenger" do |scavenger|
+    scavenger.vm.box = "cybersecurity/linux-scavenger"
+    scavenger.vm.box_version = "1.0.7"
+    scavenger.vm.ignore_box_vagrantfile = true
+    scavenger.ssh.insert_key = false
+    scavenger.vm.network "private_network", ip: "192.168.6.105"
+    scavenger.vm.synced_folder ".", "/vagrant", disabled: true
+    
+    if Vagrant.has_plugin?("vagrant-vbguest")
+        config.vbguest.auto_update = false
+    end
+    
+    scavenger.vm.provider "virtualbox" do |vb| # specify vbox provisioning
+      vb.memory = 1024
+      vb.cpus = 1
+      vb.name = "Target Machine"
+      vb.gui = false
+      vb.customize ['modifyvm', :id, '--clipboard', 'bidirectional']
+    end
+ end
+  
+  config.vm.define "ubuntu" do |ubuntu|
+    ubuntu.vm.box = "cybersecurity/UbuntuVM"
+    ubuntu.vm.network "private_network", ip: "192.168.6.104"
+    ubuntu.vm.synced_folder ".", "/vagrant", disabled: true
+    ubuntu.vm.provider "virtualbox" do |vb| # specify vbox provisioning
+      vb.gui = true
+      vb.name = "Attacker Machine"
+      vb.customize ['modifyvm', :id, '--clipboard', 'bidirectional']
+    end
+  end
+end
