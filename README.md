@@ -1,3 +1,4 @@
+ELK Stack Monitoring Lab – Azure Deployment
 ## Overview
 
 This project demonstrates a centralized logging architecture deployed in Azure.
