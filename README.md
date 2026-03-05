@@ -1,3 +1,17 @@
+## Overview
+
+This project demonstrates a centralized logging architecture deployed in Azure.
+
+The environment includes:
+- A segmented Azure virtual network
+- A jump box for controlled administrative access
+- A load-balanced DVWA web application cluster
+- An ELK server for centralized log monitoring
+- Filebeat and Metricbeat agents deployed across hosts
+- Infrastructure automation using Ansible
+
+The purpose of this project was to explore infrastructure monitoring,
+network segmentation, and automated system configuration.
 ## Automated ELK Stack Deployment
 
 The files in this repository were used to configure the network depicted below.
